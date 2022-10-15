@@ -8,16 +8,18 @@
             out.print("Please login first");  
     		response.sendRedirect("index.jsp");
         }
-	List<User> all = new UserDao().showData();
-	for(User u : all){
-	session.setAttribute("fname",u.getFname());
-    session.setAttribute("lname",u.getLname());
-    session.setAttribute("mobile_number",u.getMobile_number());
-    session.setAttribute("city",u.getCity());
-    session.setAttribute("accountBalance",u.getAccountBalance());
-    session.setAttribute("mpin",u.getMpin());
-    session.setAttribute("accountNo",u.getAccountNo());
-	}
+        List<User> all = new UserDao().showData();
+          for (User u : all) {
+            if (u.getCRN().equals(session.getAttribute("CRN"))) {
+              session.setAttribute("fname", u.getFname());
+              session.setAttribute("lname", u.getLname());
+              session.setAttribute("mobile_number", u.getMobile_number());
+              session.setAttribute("city", u.getCity());
+              session.setAttribute("accountBalance", u.getAccountBalance());
+              session.setAttribute("mpin", u.getMpin());
+              session.setAttribute("accountNo", u.getAccountNo());
+            }
+          }
 	%>
 <%
 	response.setHeader("Pragma","no-cache");
